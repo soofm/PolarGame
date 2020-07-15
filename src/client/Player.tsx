@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardComponent } from './CardComponent'
+import { CardComponent } from './AppCard'
 import { Card } from '../common/Card'
 
 interface IProps {

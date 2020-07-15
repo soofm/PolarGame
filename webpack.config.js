@@ -1,43 +1,43 @@
 const nodeExternals = require('webpack-node-externals')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const commonConfig = () => ({
-  mode: 'production',
+  context: path.resolve(__dirname, 'src'),
   module: {
     rules: [
       {
-        test: /\.ts(x?)?$/,
+        test: /\.ts(x?)$/,
         use: 'ts-loader',
         include: /src/
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ]
       }
     ]
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.json']
-  },
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
   }
 })
 
 const serverConfig = {
   ...commonConfig(),
   target: 'node',
-  entry: {
-    server: './src/server'
+  node: {
+    __dirname: false
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          name: 'vendor',
-          test: /node_modules/
-        }
-      }
-    }
+  entry: {
+    server: './server'
+  },
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist')
   },
   externals: [nodeExternals()]
 }
@@ -46,7 +46,7 @@ const clientConfig = {
   ...commonConfig(),
   target: 'web',
   entry: {
-    client: './src/client'
+    client: './client'
   },
   optimization: {
     splitChunks: {
@@ -59,10 +59,15 @@ const clientConfig = {
       }
     }
   },
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist', 'public')
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/assets/index.html'
-    })
+      template: './assets/index.html'
+    }),
+    new MiniCssExtractPlugin()
   ]
 }
 

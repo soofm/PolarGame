@@ -2,6 +2,7 @@ import React from 'react'
 import { Player } from './Player'
 import { Card, CardList } from '../common'
 import { subscribeToCards } from './socket'
+import './App.css'
 
 interface IState {
   player: {
@@ -10,8 +11,8 @@ interface IState {
 }
 
 export class App extends React.Component<{}, IState> {
-  constructor () {
-    super({})
+  constructor (props: any) {
+    super(props)
     this.state = {
       player: {
         cards: []
@@ -32,7 +33,7 @@ export class App extends React.Component<{}, IState> {
 
   render (): React.ReactNode {
     return (
-      <div>
+      <div className="container">
         <Player cards={this.state.player.cards} />
       </div>
     )
