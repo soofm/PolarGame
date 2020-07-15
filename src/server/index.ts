@@ -1,6 +1,6 @@
-import * as Koa from 'koa'
-import * as socketIO from 'socket.io'
-import * as http from 'http'
+import Koa from 'koa'
+import socketIO from 'socket.io'
+import http from 'http'
 
 const app = new Koa()
 const server = http.createServer(app.callback()) // eslint-disable-line @typescript-eslint/no-misused-promises

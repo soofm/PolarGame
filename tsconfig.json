@@ -3,6 +3,7 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "removeComments": true,
-    "resolveJsonModule": true
+    "jsx": "react",
+    "esModuleInterop": true
   }
 }
