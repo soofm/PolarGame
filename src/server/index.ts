@@ -10,10 +10,13 @@ app.use(async ctx => {
   ctx.body = 'Hello World'
 })
 
+const hand: string[] = []
+Array.from({ length: 6 }).forEach((_, i) => hand.push(i < 4 ? 'blaster' : 'shields'))
+
 io.on('connection', (socket) => {
-  console.log('a user connected')
-  socket.on('disconnect', () => {
-    console.log('user disconnected')
+  socket.emit('initial_hand', hand)
+  socket.on('card_played', (card) => {
+    console.log(JSON.stringify(card))
   })
 })
 

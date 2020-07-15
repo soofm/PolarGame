@@ -14,7 +14,7 @@ const commonConfig = () => ({
     ]
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx']
+    extensions: ['.js', '.ts', '.tsx', '.json']
   },
   output: {
     filename: '[name].js',

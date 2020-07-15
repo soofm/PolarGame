@@ -15,7 +15,7 @@ The game includes the following types of cards:
 Each player starts with a deck of six cards:
 
 * 4 Blasters
-* 2 Spanners
+* 2 Shields
 
 # ON YOUR TURN
 
@@ -23,7 +23,4 @@ At the beginning of each turn, draw three cards. On each turn, take the followin
 
 * Draw an event card
 * Spend resources to capture bounties
-* Use credits to purchase upgrades at the exchange
-
-You will have to be resourceful to capture bounties. Some targets will be elusive - you will have to purchase intel to track them down. Other targets will try to escape when found - you will have to chase them through space. Other targets will fight back - you will have to use your weapons to overcome them. 
-
+* Use credits to purchase equipment at the exchange
