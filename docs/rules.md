@@ -1,26 +1,26 @@
-# INTRODUCTION
+# WAR OVER PRADAI
 
-You are an aspiring bounty hunter. You've recently arrived in the Morhu sector to make a fortune for yourself. But beware, as your kill count grows, you may find a bounty out for you!
+## INTRODUCTION
 
-# CARDS
+You are commander of a small army attempting to seize control of the planet Pradai.
+
+## CARDS
 
 The game includes the following types of cards:
 
-* Equipment
-* Bounties
-* Events
+* Mercenaries
+* Outposts
 
-# STARTING THE GAME
+## STARTING THE GAME
 
-Each player starts with a deck of six cards:
+Each player starts with a deck of ten cards:
 
-* 4 Blasters
-* 2 Shields
+* 8 Mining Drone (1 Mineral)
+* 2 Cyclone (1 Combat)
 
-# ON YOUR TURN
+## ON YOUR TURN
 
-At the beginning of each turn, draw three cards. On each turn, take the following actions:
+At the beginning of each turn, draw five cards. On each turn, you may take the following actions:
 
-* Draw an event card
-* Spend resources to capture bounties
-* Use credits to purchase equipment at the exchange
+* Play cards to obtain resources
+* Spend resources on targets

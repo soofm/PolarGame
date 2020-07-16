@@ -1,30 +1,24 @@
 import { useState, useEffect } from 'react'
 import io from 'socket.io-client'
-import { Card, CardList, Stats, SocketEvents } from '../common'
+import { Card, CardList, PlayerStats, SocketEvents } from '../common'
 
 const socket = io()
 
-function usePlayerStats (): [Stats] {
-  const [stats, setStats] = useState<Stats>({
-    attack: 0,
-    shields: 0
+function usePlayer (): [PlayerStats, Card[], (index: number) => void] {
+  const [playerStats, setPlayerStats] = useState<PlayerStats>({
+    drawPile: [],
+    discardPile: [],
+    hand: [],
+    shields: 20,
+    money: 0,
+    combat: 0
   })
-
-  useEffect(() => {
-    socket.on(SocketEvents.UpdatedStats, (stats: Stats) => {
-      setStats(stats)
-    })
-  })
-
-  return [stats]
-}
-
-function usePlayerCards (): [Card[], (index: number) => void] {
   const [cards, setCards] = useState<Card[]>([])
 
   useEffect(() => {
-    socket.on(SocketEvents.DrewCards, (cardIds: string[]) => {
-      setCards([...cards, ...cardIds.map(cardId => CardList[cardId])])
+    socket.on(SocketEvents.UpdatedPlayerStats, (stats: PlayerStats) => {
+      setPlayerStats(stats)
+      setCards(stats.hand.map(cardId => CardList[cardId]))
     })
   })
 
@@ -36,7 +30,7 @@ function usePlayerCards (): [Card[], (index: number) => void] {
     socket.emit(SocketEvents.PlayedCard, index)
   }
 
-  return [cards, playCard]
+  return [playerStats, cards, playCard]
 }
 
-export { usePlayerStats, usePlayerCards }
+export { usePlayer }
