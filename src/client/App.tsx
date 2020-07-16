@@ -1,12 +1,11 @@
 import React from 'react'
 import { StatsPane } from './StatsPane'
 import { CardPane } from './CardPane'
-import { usePlayerStats, usePlayerCards } from './socket'
+import { usePlayer } from './socket'
 import './App.css'
 
 function App (): React.ReactElement {
-  const [stats] = usePlayerStats()
-  const [cards, playCard] = usePlayerCards()
+  const [stats, cards, playCard] = usePlayer()
 
   return (
     <div className="container">

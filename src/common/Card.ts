@@ -1,9 +1,11 @@
-import { Effect } from './Effect'
+import { KeyValue } from './KeyValue'
 
 export interface Card {
   id: string
   name: string
-  cost?: number
   text: string
-  effects: Effect[]
+  effects: KeyValue[]
+  cost?: number
+  additional_cost?: KeyValue[]
+  points?: number
 }

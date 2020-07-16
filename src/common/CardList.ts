@@ -1,49 +1,39 @@
 import { Card } from './Card'
 
 const CardList: { [id: string]: Card } = {
-  blaster: {
-    id: 'blaster',
-    name: 'Blaster',
-    text: ':attack:',
+  mining_drone: {
+    id: 'mining_drone',
+    name: 'Mining Drone',
+    text: ':mineral:',
     effects: [
-      { id: 'inc_attack', value: 1 }
+      { key: 'inc_money', value: 1 }
     ]
   },
-  shields: {
-    id: 'shields',
-    name: 'Shields',
-    text: ':shield:',
+  scout: {
+    id: 'scout',
+    name: 'Scout',
+    text: ':gun:',
     effects: [
-      { id: 'inc_shields', value: 1 }
+      { key: 'inc_combat', value: 1 }
     ]
   },
-  plasma_blaster: {
-    id: 'plasma_blaster',
-    name: 'Plasma Blaster',
-    cost: 3,
-    text: ':attack: :attack:',
+  trade_vessel: {
+    id: 'trade_vessel',
+    name: 'Trade Vessel',
+    text: '2:mineral:',
     effects: [
-      { id: 'inc_attack', value: 2 }
-    ]
+      { key: 'inc_money', value: 2 }
+    ],
+    cost: 3
   },
-  phase_shielding: {
-    id: 'phase_shielding',
-    name: 'Phase Shielding',
-    cost: 3,
-    text: '2 :shield:',
+  cyclone: {
+    id: 'cyclone',
+    name: 'Cyclone',
+    text: '2:gun:',
     effects: [
-      { id: 'inc_shields', value: 2 }
-    ]
-  },
-  evasive_maneuvers: {
-    id: 'evasive_maneuvers',
-    name: 'Evasive Maneuvers',
-    cost: 5,
-    text: '4 :shield:',
-    effects: [
-      { id: 'discard_chosen', value: 1 },
-      { id: 'inc_shields', value: 4 }
-    ]
+      { key: 'inc_combat', value: 2 }
+    ],
+    cost: 3
   },
   rapid_prototyping: {
     id: 'rapid_prototyping',
@@ -51,7 +41,7 @@ const CardList: { [id: string]: Card } = {
     cost: 7,
     text: 'You may scrap a card. If you do, add an equipment card from the Exchange to your discard pile.',
     effects: [
-      { id: 'scrap_chosen_to_acquire', value: 1 }
+      { key: 'scrap_chosen_to_acquire', value: 1 }
     ]
   }
 }
