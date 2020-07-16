@@ -1,0 +1,19 @@
+
+.left-column {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .left-column {
+    width: 25%;
+    max-width: 300px;
+  }
+}
+
+.stats-padding {
+  padding: 8px;
+}
+
+

@@ -1,6 +1,9 @@
+import { Effect } from './Effect'
+
 export interface Card {
+  id: string
   name: string
   cost?: number
   text: string
-  effect: { [id: string]: number }
+  effects: Effect[]
 }

@@ -1,2 +1,6 @@
 export { Card } from './Card'
 export { CardList } from './CardList'
+export { Effect } from './Effect'
+export { Player } from './Player'
+export { SocketEvents } from './SocketEvents'
+export { Stats } from './Stats'

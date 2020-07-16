@@ -4,17 +4,14 @@
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   transition: 0.3s;
-  height: 300px;
+  cursor: pointer;
+  height: 285px;
   width: 180px;
   padding: 8px;
 }
 
 .card:hover {
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
-}
-
-.card + .card {
-  margin-left: 16px;
 }
 
 .card-cost {

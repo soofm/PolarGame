@@ -11,5 +11,6 @@ body {
 }
 
 .container {
+  display: flex;
   margin: 16px;
 }
