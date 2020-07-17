@@ -1,6 +1,6 @@
 import React from 'react'
+import { Card } from '@/common/Card'
 import { AppCard } from './AppCard'
-import { Card } from '../common/Card'
 import './CardPane.css'
 
 interface IProps {
@@ -18,7 +18,7 @@ function CardPane (props: IProps): React.ReactElement<IProps> {
             name={card.name}
             cost={card.cost}
             text={card.text}
-            handlePlayCard={(_event) => props.playCard(index)}
+            handlePlayCard={(_e) => props.playCard(index)}
           />
         ))
       }

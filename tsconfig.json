@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "module": "commonjs",
     "target": "ES6",
     "noImplicitAny": true,
     "removeComments": true,
+    "strict": true,
     "jsx": "react",
     "esModuleInterop": true
   }

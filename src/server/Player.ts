@@ -1,9 +1,10 @@
+import { v4 as uuidv4 } from 'uuid'
 import { CardList, PlayerStats } from '../common'
 import { shuffle } from './utilities'
 
-let playerId = 0
-
 export class Player {
+  get id (): string { return this._id }
+
   getStats (): PlayerStats {
     const drawPile = this._drawPile.slice()
     shuffle(drawPile)
@@ -60,10 +61,7 @@ export class Player {
   }
 
   constructor () {
-    const id = playerId
-    playerId += 1
-
-    this._id = id
+    this._id = uuidv4()
     this._drawPile = Array.from({ length: 10 }).map((_, i) => i < 8 ? 'mining_drone' : 'scout')
     shuffle(this._drawPile)
     this._discardPile = []
@@ -73,7 +71,7 @@ export class Player {
     this._combat = 0
   }
 
-  private readonly _id: number
+  private readonly _id: string
   private readonly _drawPile: string[]
   private readonly _discardPile: string[]
   private readonly _hand: string[]
