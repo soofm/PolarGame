@@ -1,25 +1,14 @@
 import Koa from 'koa'
 import serve from 'koa-static'
-import socketIO from 'socket.io'
-import http from 'http'
+import { createServer } from 'http'
 import path from 'path'
-import { SocketEvents } from '../common'
-import { Player } from './Player'
+import { setupSocket } from './socket'
 
 const app = new Koa()
-const server = http.createServer(app.callback()) // eslint-disable-line @typescript-eslint/no-misused-promises
-const io = socketIO(server)
+const server = createServer(app.callback()) // eslint-disable-line @typescript-eslint/no-misused-promises
 
 app.use(serve(path.join(__dirname, 'public')))
 
-io.on('connection', (socket) => {
-  const player = new Player()
-  player.draw(5)
-  socket.emit(SocketEvents.UpdatedPlayerStats, player.getStats())
-  socket.on(SocketEvents.PlayedCard, (index) => {
-    player.playCard(index)
-    socket.emit(SocketEvents.UpdatedPlayerStats, player.getStats())
-  })
-})
+setupSocket(server)
 
 server.listen(3000)

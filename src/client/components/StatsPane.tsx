@@ -1,6 +1,6 @@
 import React from 'react'
+import { PlayerStats } from '@/common'
 import './StatsPane.css'
-import { PlayerStats } from '../common'
 
 interface IProps {
   stats: PlayerStats

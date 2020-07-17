@@ -1,17 +1,13 @@
 import React from 'react'
-import { StatsPane } from './StatsPane'
-import { CardPane } from './CardPane'
-import { usePlayer } from './socket'
+import { useGameRoom } from './socket'
+import { Game } from './components/Game'
+import { Lobby } from './components/Lobby'
 import './App.css'
 
 function App (): React.ReactElement {
-  const [stats, cards, playCard] = usePlayer()
-
+  const [roomId, createRoom] = useGameRoom()
   return (
-    <div className="container">
-      <StatsPane stats={stats} />
-      <CardPane cards={cards} playCard={playCard} />
-    </div>
+    roomId != null ? <Game roomId={roomId} /> : <Lobby createRoom={createRoom} />
   )
 }
 App.displayName = 'App'
