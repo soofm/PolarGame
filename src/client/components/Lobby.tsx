@@ -1,23 +1,31 @@
 import React, { useState, FormEvent } from 'react'
+import { Redirect } from 'react-router-dom'
+import './Lobby.css'
 
 interface IProps {
-  createRoom: (name: string) => void
+  createRoom: (name: string) => Promise<string>
 }
 
 function Lobby (props: IProps): React.ReactElement {
   const [name, setName] = useState<string>('')
+  const [redirect, setRedirect] = useState<string | undefined>()
 
-  function handleSubmitCreateRoom (e: FormEvent<HTMLFormElement>): void {
+  async function handleSubmitCreateRoom (e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault()
-    props.createRoom(name)
+    const roomId = await props.createRoom(name)
+    setRedirect(`/game/${roomId}`)
+  }
+
+  if (redirect != null) {
+    return <Redirect to={redirect} />
   }
 
   return (
-    <div className="container">
+    <div className="lobby-menu">
       <form onSubmit={handleSubmitCreateRoom}>
         <h2>Create New Room</h2>
         <label>
-          Name:
+          Nickname:
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <div>

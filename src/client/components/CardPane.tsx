@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card } from '@/common/Card'
 import { AppCard } from './AppCard'
-import './CardPane.css'
 
 interface IProps {
   cards: Card[]

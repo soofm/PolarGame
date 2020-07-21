@@ -1,5 +1,6 @@
 export { Card } from './Card'
 export { CardList } from './CardList'
+export { GameState } from './GameState'
 export { KeyValue } from './KeyValue'
-export { PlayerStats } from './PlayerStats'
+export { PlayerState } from './PlayerState'
 export { ClientEvents, ServerEvents } from './SocketEvents'

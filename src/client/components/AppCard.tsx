@@ -10,8 +10,8 @@ interface IProps {
 
 function AppCard (props: IProps): React.ReactElement<IProps> {
   const replacements = [
-    [':attack:', '🔫'],
-    [':shield:', '🛡️']
+    [':mineral:', '💎'],
+    [':gun:', '🔫']
   ]
 
   function parseText (text: string): string {

@@ -1,0 +1,33 @@
+
+.left-column {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem;
+}
+
+.right-column {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 180px);
+  grid-gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .left-column {
+    width: 25%;
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .right-column {
+    width: 75%;
+  }
+}
+
+.stats-padding {
+  background: var(--secondary-bg-color);
+}

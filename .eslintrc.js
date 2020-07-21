@@ -4,7 +4,10 @@ module.exports = {
     'plugin:react/recommended'
   ],
   parserOptions: {
-    project: './tsconfig.json'
+    project: './tsconfig.json',
+    ecmaFeatures: {
+      jsx: true
+    }
   },
   rules: {
   }

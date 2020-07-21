@@ -1,14 +1,15 @@
 import { v4 as uuidv4 } from 'uuid'
-import { CardList, PlayerStats } from '../common'
+import { CardList, PlayerState } from '@/common'
 import { shuffle } from './utilities'
 
 export class Player {
   get id (): string { return this._id }
 
-  getStats (): PlayerStats {
+  getState (): PlayerState {
     const drawPile = this._drawPile.slice()
     shuffle(drawPile)
     return {
+      id: this._id,
       drawPile,
       discardPile: this._discardPile,
       hand: this._hand,

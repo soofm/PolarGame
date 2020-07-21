@@ -1,13 +1,14 @@
 .card {
   display: inline-block;
   position: relative;
+  background: var(--secondary-bg-color);
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   transition: 0.3s;
   cursor: pointer;
-  height: 285px;
-  width: 180px;
-  padding: 8px;
+  height: 18em;
+  width: 12em;
+  padding: 0.5rem;
 }
 
 .card:hover {
@@ -18,9 +19,9 @@
   position: absolute;
   border: 1px solid black;
   border-radius: 50%;
-  top: 8px;
-  right: 8px;
-  height: 24px;
-  width: 24px;
+  top: 0.5em;
+  right: 0.5em;
+  height: 1.6em;
+  width: 1.6em;
   text-align: center;
 }

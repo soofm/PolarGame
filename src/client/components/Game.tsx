@@ -1,18 +1,36 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { StatsPane } from './StatsPane'
 import { CardPane } from './CardPane'
-import { usePlayer } from '../socket'
+import { useGame } from '../socket'
+import { CardList } from '@/common'
+import './Game.css'
 
-interface IProps {
-  roomId: string
-}
+function Game (): React.ReactElement {
+  const { roomId } = useParams()
+  const {
+    playerId,
+    gameState,
+    startGame,
+    playCard
+  } = useGame(roomId)
 
-function Game (_props: IProps): React.ReactElement {
-  const [stats, cards, playCard] = usePlayer()
+  if (playerId == null || gameState.phase === 0) {
+    return (
+      <div>
+        <button type="button" onClick={() => startGame(roomId)}>Start Game</button>
+      </div>
+    )
+  }
 
+  const playerState = gameState.playerStates.find(player => player.id === playerId)
+  if (playerState == null) {
+    throw new Error('Player does not exist in this game?!')
+  }
+  const cards = playerState.hand.map(cardId => CardList[cardId])
   return (
     <div className="container">
-      <StatsPane stats={stats} />
+      <StatsPane playerState={playerState} />
       <CardPane cards={cards} playCard={playCard} />
     </div>
   )

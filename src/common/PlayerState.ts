@@ -1,4 +1,5 @@
-export interface PlayerStats {
+export interface PlayerState {
+  id: string
   drawPile: string[]
   discardPile: string[]
   hand: string[]

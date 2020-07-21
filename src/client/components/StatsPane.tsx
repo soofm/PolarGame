@@ -1,22 +1,21 @@
 import React from 'react'
-import { PlayerStats } from '@/common'
-import './StatsPane.css'
+import { PlayerState } from '@/common'
 
 interface IProps {
-  stats: PlayerStats
+  playerState: PlayerState
 }
 
 function StatsPane (props: IProps): React.ReactElement<IProps> {
-  const { stats } = props
+  const { playerState } = props
 
   return (
     <div className="left-column">
       <div className="stats-padding">
-        <div>Draw Pile: {stats.drawPile.length}</div>
-        <div>Discard Pile: {stats.discardPile.length}</div>
-        <div>{stats.money} Minerals</div>
-        <div>{stats.combat} Combat</div>
-        <div>{stats.shields} Shields</div>
+        <div>Draw Pile: {playerState.drawPile.length}</div>
+        <div>Discard Pile: {playerState.discardPile.length}</div>
+        <div>{playerState.money} Minerals</div>
+        <div>{playerState.combat} Combat</div>
+        <div>{playerState.shields} Shields</div>
       </div>
     </div>
   )

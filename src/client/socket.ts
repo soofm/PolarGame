@@ -1,59 +1,46 @@
 import { useState, useEffect } from 'react'
 import io from 'socket.io-client'
-import { Card, CardList, PlayerStats, ClientEvents, ServerEvents } from '../common'
+import { ClientEvents, ServerEvents, GameState } from '../common'
 
 const socket = io()
 
-function useGameRoom (): [string | null, (name: string) => void, (roomId: string) => void] {
-  const [roomId, setRoomId] = useState<string | null>(null)
-
-  useEffect(() => {
-    socket.on(ServerEvents.JoinedRoom, (roomId: string) => {
-      setRoomId(roomId)
-    })
-  })
-
-  function createRoom (name: string): void {
-    if (name == null) {
-      return
-    }
-    socket.emit(ClientEvents.CreateRoom, name)
-  }
-
-  function joinRoom (name: string): void {
-    socket.emit(ClientEvents.JoinRoom, name)
-  }
-
-  return [roomId, createRoom, joinRoom]
+interface GameHook {
+  playerId: string | undefined
+  gameState: GameState
+  startGame: (roomId: string) => void
+  playCard: (index: number) => void
 }
 
-function usePlayer (): [PlayerStats, Card[], (index: number) => void] {
-  const [playerStats, setPlayerStats] = useState<PlayerStats>({
-    drawPile: [],
-    discardPile: [],
-    hand: [],
-    shields: 20,
-    money: 0,
-    combat: 0
+function useGame (roomId: string): GameHook {
+  const [playerId, setPlayerId] = useState<string | undefined>()
+  const [gameState, setGameState] = useState<GameState>({
+    phase: 0,
+    playerStates: []
   })
-  const [cards, setCards] = useState<Card[]>([])
 
   useEffect(() => {
-    socket.on(ServerEvents.UpdatedPlayerStats, (stats: PlayerStats) => {
-      setPlayerStats(stats)
-      setCards(stats.hand.map(cardId => CardList[cardId]))
+    socket.on(ServerEvents.JoinedRoom, (playerId: string) => {
+      setPlayerId(playerId)
     })
-  })
+    socket.on(ServerEvents.UpdatedGameState, (state: GameState) => {
+      setGameState(state)
+    })
+    socket.emit(ClientEvents.JoinRoom, roomId)
+  }, [])
+
+  function startGame (): void {
+    socket.emit(ClientEvents.StartGame, roomId)
+  }
 
   function playCard (index: number): void {
-    if (index >= cards.length) {
+    const playerState = gameState.playerStates.find(player => player.id === playerId)
+    if (playerState == null || index >= playerState.hand.length) {
       return
     }
-    setCards(cards.filter((_, i) => i !== index))
-    socket.emit(ClientEvents.PlayCard, index)
+    socket.emit(ClientEvents.PlayCard, roomId, playerId, index)
   }
 
-  return [playerStats, cards, playCard]
+  return { playerId, gameState, startGame, playCard }
 }
 
-export { useGameRoom, usePlayer }
+export { useGame }
