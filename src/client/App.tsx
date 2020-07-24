@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom'
 import { Game } from './components/Game'
 import { Home } from './components/Home'
-import { Lobby } from './components/Lobby'
 import { createRoom } from './api'
 import './App.css'
 
@@ -17,11 +16,8 @@ function App (): React.ReactElement {
         <Route path="/game/:roomId">
           <Game />
         </Route>
-        <Route path="/new">
-          <Lobby createRoom={createRoom} />
-        </Route>
         <Route path="/">
-          <Home />
+          <Home createRoom={createRoom} />
         </Route>
       </Switch>
     </HashRouter>

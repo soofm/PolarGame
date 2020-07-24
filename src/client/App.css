@@ -20,3 +20,12 @@ body {
   display: flex;
   margin: 1rem;
 }
+
+.main-menu {
+  margin: 5rem auto;
+  max-width: 30rem;
+  width: 90%;
+  background: var(--secondary-bg-color);
+  padding: 1rem;
+  text-align: center;
+}
